@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>wook.papers3</string>
+	<key>connections</key>
+	<dict>
+		<key>C13FE4D5-7245-49D8-B390-006E33DE3B47</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Jongwook Choi</string>
+	<key>description</key>
+	<string>An workflow to search Papers3 items</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Papers3 Search</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>pp</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>python papers3.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Keyword: p</string>
+				<key>title</key>
+				<string>Search</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>C13FE4D5-7245-49D8-B390-006E33DE3B47</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/osascript open_in_papers.scpt "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>C13FE4D5-7245-49D8-B390-006E33DE3B47</key>
+		<dict>
+			<key>xpos</key>
+			<integer>320</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+		<key>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/wookayin/alfred-papers3-workflow</string>
+</dict>
+</plist>
