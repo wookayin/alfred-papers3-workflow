@@ -44,6 +44,11 @@ def read_papers_entries():
             if entry[k] == applescript.kMissingValue:
                 entry[k] = ''
 
+        if entry['keyword names']:
+            keywords = entry['keyword names'].split(',')
+            keywords = ['#' + unicode(k).strip() for k in keywords]
+            entry['keyword names'] = ' '.join(keywords)
+
         yield entry
 
 
@@ -60,7 +65,8 @@ def main(wf):
     ret = wf.filter(args.query, items,
                     key=lambda t: (t['title'] + ' ' +
                                    t['author names'] + ' ' +
-                                   t['bundle name']),
+                                   t['bundle name'] + ' ' +
+                                   t['keyword names']),
                     min_score=20,
                     include_score=True)
 
