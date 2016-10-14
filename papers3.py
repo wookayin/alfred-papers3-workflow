@@ -77,6 +77,7 @@ def main(wf):
                     subtitle=authors + (" (%s %s)" % (bundle, year)), #+ (" (%.3f)" % score),
                     modifier_subtitles={
                         'alt' : citekey,
+                        'shift' : 'Copy the BibTeX record of ' + citekey,
                     },
                     valid=True,
                     arg=citekey,

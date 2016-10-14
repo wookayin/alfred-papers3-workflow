@@ -6,6 +6,52 @@
 	<string>wook.papers3</string>
 	<key>connections</key>
 	<dict>
+		<key>25900415-5D3A-4346-9E3A-B2B92E79477B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>01BFBDEB-7A4D-49FA-B922-CFD9AC5DF7A2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>66D4E11E-0697-4EA9-8FB7-B1BEE9EEB322</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AB52CA65-D8F3-4AAC-B3A2-0B0C617078A5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>01BFBDEB-7A4D-49FA-B922-CFD9AC5DF7A2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>66D4E11E-0697-4EA9-8FB7-B1BEE9EEB322</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>C13FE4D5-7245-49D8-B390-006E33DE3B47</key>
 		<array>
 			<dict>
@@ -13,6 +59,26 @@
 				<string>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>25900415-5D3A-4346-9E3A-B2B92E79477B</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AB52CA65-D8F3-4AAC-B3A2-0B0C617078A5</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -30,6 +96,29 @@
 	<string>Papers3 Search</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/bin/osascript open_in_papers.scpt "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -81,7 +170,9 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/usr/bin/osascript open_in_papers.scpt "$1"</string>
+				<string># convert citekey to BibTeX citation string
+
+/usr/bin/osascript copy_bibtex_papers.scpt "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -92,7 +183,71 @@
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</string>
+			<string>25900415-5D3A-4346-9E3A-B2B92E79477B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>01BFBDEB-7A4D-49FA-B922-CFD9AC5DF7A2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied into the clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>66D4E11E-0697-4EA9-8FB7-B1BEE9EEB322</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Pass through the {query} (citekey, e.g. Choi:2016)
+
+query=$1
+echo -n $query</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AB52CA65-D8F3-4AAC-B3A2-0B0C617078A5</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -101,12 +256,40 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>01BFBDEB-7A4D-49FA-B922-CFD9AC5DF7A2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>830</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>25900415-5D3A-4346-9E3A-B2B92E79477B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>66D4E11E-0697-4EA9-8FB7-B1BEE9EEB322</key>
+		<dict>
+			<key>xpos</key>
+			<integer>830</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>AB52CA65-D8F3-4AAC-B3A2-0B0C617078A5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
 		<key>C13FE4D5-7245-49D8-B390-006E33DE3B47</key>
 		<dict>
 			<key>xpos</key>
 			<integer>320</integer>
 			<key>ypos</key>
-			<integer>60</integer>
+			<integer>180</integer>
 		</dict>
 		<key>C9EC46AB-48C5-4CE6-AD04-CFBCA7E072F0</key>
 		<dict>

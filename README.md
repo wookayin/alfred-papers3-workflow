@@ -11,7 +11,9 @@ Usage: `pp <query>`
 
 - [x] Search for papers in Papers3 Library, by title and authors (fuzzy matching)
 - [x] Open the selected item in Papers3.app
-- [ ] Copy citekey or citation strings into the clipboard
+- [x] Copy citekey or BibTeX strings into the clipboard
+    - Select the item with the modifier `<alt>` to copy citekey
+    - Select the item with the modifier `<shift>` to copy BibTeX strings
 - [ ] Package it!
 
 
