@@ -3,6 +3,8 @@ Alfred Papers3 Workflow
 
 This is an Alfred 3 workflow to search Papers3 items. Still experimental :-)
 
+![Papers3 Workflow](https://raw.github.com/wookayin/alfred-papers3-workflow/master/screenshots/search.png)
+
 
 Features and TODO
 -----------------
