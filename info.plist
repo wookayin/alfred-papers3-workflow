@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>wook.papers3</string>
+	<string>kr.wook.alfred-papers3-workflow</string>
 	<key>connections</key>
 	<dict>
 		<key>25900415-5D3A-4346-9E3A-B2B92E79477B</key>

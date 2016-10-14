@@ -21,3 +21,9 @@ Authors
 -------
 
 Jongwook Choi (@wookayin)
+
+
+License
+-------
+
+MIT
