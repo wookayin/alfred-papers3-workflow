@@ -9,39 +9,42 @@ Usage:
 """
 
 from __future__ import print_function
-import os.path
-import pybtex.database
 import sys
 import workflow
+
+sys.path.append("/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/PyObjC")
+import applescript
+
+FIELDS = ['citekey', 'title', 'author names',
+          'bundle name', 'publication year', 'keyword names']
 
 # Alfred logger
 log = None
 
-# The bibtex file automatically exported from Papers 3 (in a virtual volume)
-# TODO: write an applescript to directly query Papers to get the full metadata
-PAPERS_LIBRARY = r'/Volumes/Papers Library/All Papers/Ω Export/All Papers.bib'
+def read_papers_entries():
+    scpt = applescript.AppleScript(
+    '''
+        tell application "Papers"
+            set t to {%s} of every publication item
+            return t
+        end tell
+    ''' % (', '.join(FIELDS)))
 
-def read_bibtex():
-    if not os.path.isfile(PAPERS_LIBRARY):
-        raise RuntimeError('Cannot access to Papers Library. Check Papers3 application settings.')
+    t = scpt.run()
+    result = [dict(zip(FIELDS, k)) for k in zip(*t)]
+    # result[i] : {'citekey' : ..., 'title' : ..., ...}
 
-    with open(PAPERS_LIBRARY, 'r') as f:
-        bib = pybtex.database.parse_file(f)
-
-    def _strauthor(p):
-        return ' '.join(list(p.first_names) + list(p.last_names))
-
-    for bibkey, entry in bib.entries.iteritems():
-        title = entry.fields['title']
+    for entry in result:
+        title = entry['title']
         if title[0] == '{' and title[-1] == '}':
             title = title[1:-1]
+        entry['title'] = title
 
-        try:
-            authors = [_strauthor(p) for p in entry.persons['author']]
-        except KeyError:
-            authors = []
+        for k in ('publication year', 'author names'):
+            if entry[k] == applescript.kMissingValue:
+                entry[k] = ''
 
-        yield bibkey, title, authors
+        yield entry
 
 
 def main(wf):
@@ -51,23 +54,27 @@ def main(wf):
     args = parser.parse_args()
     log.debug('args : {}'.format(args))
 
-    items = list(read_bibtex())
+    items = list(read_papers_entries())
 
     # search by query
     ret = wf.filter(args.query, items,
-                    key=lambda t: ' '.join([t[1]] + t[2]),
-                    min_score=10,
+                    key=lambda t: (t['title'] + t['author names']),
+                    min_score=20,
                     include_score=True)
+
     #ret.sort(key=lambda t: t[1], reverse=True)
 
     if not ret:
         wf.add_item('No matchings', icon=workflow.ICON_WARNING)
 
-    for (key, title, authors), score, _ in ret:  # subset of cached_items
-        wf.add_item(title, ', '.join(authors),
+    for entry, score, _ in ret:
+        title, authors = entry['title'], entry['author names']
+        citekey = entry['citekey']
+        wf.add_item(title=title,
+                    subtitle=authors, #+ (" (%.3f)" % score),
                     valid=True,
-                    arg=key,
-                    uid=key,
+                    arg=citekey,
+                    uid=citekey,
                     type='file',
                     icon='icon.png'
                     )
