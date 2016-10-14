@@ -58,7 +58,9 @@ def main(wf):
 
     # search by query
     ret = wf.filter(args.query, items,
-                    key=lambda t: (t['title'] + t['author names']),
+                    key=lambda t: (t['title'] + ' ' +
+                                   t['author names'] + ' ' +
+                                   t['bundle name']),
                     min_score=20,
                     include_score=True)
 
@@ -69,9 +71,13 @@ def main(wf):
 
     for entry, score, _ in ret:
         title, authors = entry['title'], entry['author names']
+        bundle, year = entry['bundle name'], entry['publication year']
         citekey = entry['citekey']
         wf.add_item(title=title,
-                    subtitle=authors, #+ (" (%.3f)" % score),
+                    subtitle=authors + (" (%s %s)" % (bundle, year)), #+ (" (%.3f)" % score),
+                    modifier_subtitles={
+                        'alt' : citekey,
+                    },
                     valid=True,
                     arg=citekey,
                     uid=citekey,
