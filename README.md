@@ -19,6 +19,12 @@ Usage: `pp <query>`
     - Select the item with the modifier `<alt>` to copy citekey
     - Select the item with the modifier `<shift>` to copy BibTeX strings
 
+TODO
+----
+
+- [ ] Make it faster (currently, querying is too slow), and support cache
+- [ ] Better ranking and string matchers (e.g. exact match doesn't show up)
+- [ ] Fix applescript import issue
 
 Authors
 -------
