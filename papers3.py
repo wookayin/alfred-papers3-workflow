@@ -34,6 +34,7 @@ def read_papers_entries():
     result = [dict(zip(FIELDS, k)) for k in zip(*t)]
     # result[i] : {'citekey' : ..., 'title' : ..., ...}
 
+    entries = []
     for entry in result:
         title = entry['title']
         if title[0] == '{' and title[-1] == '}':
@@ -49,7 +50,8 @@ def read_papers_entries():
             keywords = ['#' + unicode(k).strip() for k in keywords]
             entry['keyword names'] = ' '.join(keywords)
 
-        yield entry
+        entries.append(entry)
+    return entries
 
 
 def main(wf):
@@ -59,7 +61,9 @@ def main(wf):
     args = parser.parse_args()
     log.debug('args : {}'.format(args))
 
-    items = list(read_papers_entries())
+    items = wf.cached_data('papers_all', read_papers_entries,
+                           max_age=600) # cache 600 seconds
+    log.debug('Cached {} items from Papers3'.format(len(items)))
 
     # search by query
     ret = wf.filter(args.query, items,
