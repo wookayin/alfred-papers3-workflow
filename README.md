@@ -22,9 +22,9 @@ Usage: `pp <query>`
 TODO
 ----
 
-- [ ] Make it faster (currently, querying is too slow), and support cache
+- [x] Make it faster (currently, querying is too slow), and support cache
 - [ ] Better ranking and string matchers (e.g. exact match doesn't show up)
-- [ ] Fix applescript import issue
+- [x] Fix applescript import issue
 
 Authors
 -------
