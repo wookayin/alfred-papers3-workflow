@@ -65,12 +65,14 @@ def main(wf):
                            max_age=600) # cache 600 seconds
     log.debug('Cached {} items from Papers3'.format(len(items)))
 
-    # search by query
+    # fuzzy-search by query
+    # http://www.deanishe.net/alfred-workflow/user-manual/filtering.html?highlight=match_all
     ret = wf.filter(args.query, items,
                     key=lambda t: (t['title'] + ' ' +
                                    t['author names'] + ' ' +
                                    t['bundle name'] + ' ' +
                                    t['keyword names']),
+                    match_on=(workflow.MATCH_ALL ^ workflow.MATCH_ALLCHARS),
                     min_score=20,
                     include_score=True)
 
