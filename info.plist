@@ -300,7 +300,7 @@ echo -n $query</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2-dev</string>
+	<string>1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/wookayin/alfred-papers3-workflow</string>
 </dict>
